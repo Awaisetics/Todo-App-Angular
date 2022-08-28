@@ -1,0 +1,13 @@
+<div class="card mt-4 shadow-sm">
+    <div class="card-body">
+        <div class="row gx-3 gy-2 align-items-center">
+            <div class="col">
+                <label class="visually-hidden" for="todoInput">Enter your todo item</label>
+                <input type="text" class="form-control" placeholder="Add Item Here" [(ngModel)] = "todoTask" />
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" [disabled]="todoTask === ''" (click)="addTodo()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
