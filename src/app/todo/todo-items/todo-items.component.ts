@@ -17,8 +17,6 @@ export class TodoItemsComponent implements OnInit {
   @Output() onRemoveTodo = new EventEmitter<number>();
   @Output() onUpdateTodo = new EventEmitter<{ todoID: number, updatedValue: string}>();
 
-  editContainerOpened : boolean = false;
-
   checkBoxChanged(id : number , e : any){
     this.onStatusChange.emit({id , status : e.target.checked})
   }
@@ -27,14 +25,15 @@ export class TodoItemsComponent implements OnInit {
     this.onRemoveTodo.emit(id);
   }
 
-  updateTodo(todoID : number , e : any){
+  updateTodo(todo : any , e : any){
     const updatedValue: string = e.target.previousElementSibling.value;
-    this.onUpdateTodo.emit({todoID , updatedValue});
-    this.toggleEditContainer();
+    const todoID = todo.id;
+    this.onUpdateTodo.emit({ todoID , updatedValue });
+    this.toggleEditContainer(todo , false);
   }
 
-  toggleEditContainer(){
-    this.editContainerOpened ? this.editContainerOpened = false : this.editContainerOpened = true;
+  toggleEditContainer(todo : any , status : boolean){
+    todo.edit = status;
   }
   
 }
